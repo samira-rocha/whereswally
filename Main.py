@@ -54,10 +54,11 @@ def locate(img, filepath="Data/Raw/Train/"):
     gray = cv2.cvtColor(cv2.imread(filepath + img), cv2.COLOR_BGR2GRAY)
     coloured_heat = cv2.cvtColor(gray, cv2.COLOR_GRAY2RGB)
 
+    # comented 3 lines below stop showing the heatmap
     heatmap = heatmodel.predict(data.reshape(1, data.shape[0], data.shape[1], data.shape[2]))
-    plt.imshow(heatmap[0, :, :, 0])
-    plt.title("Heatmap")
-    plt.show()
+    # plt.imshow(heatmap[0, :, :, 0])
+    # plt.title("Heatmap")
+    # plt.show()
 
     # Show 95 certainty heatmap and grayscale->color
     # plt.imshow(heatmap[0, :, :, 0] > 0.95, cmap="gray")
@@ -78,7 +79,8 @@ def locate(img, filepath="Data/Raw/Train/"):
     for i, j in zip(x, y):
         y_pos = j * 3
         x_pos = i * 3
-        cv2.rectangle(data, (x_pos, y_pos), (x_pos + 64, y_pos + 64), (0, 0, 255), 5)
+        cv2.rectangle(data, (x_pos, y_pos), (x_pos + 64, y_pos + 64), (0, 255, 0), 2)
+        # cv2.addWeighted(data,1,ret,0.3)
 
     coloured_heat = coloured_heat.astype(np.uint8)
     # Image.fromarray(coloured_heat).show()
@@ -111,9 +113,9 @@ def color_gray(image, heatmap, gray):
 #         print('exception', e)
 
 # Predict a specific image
-annotated, heatmap = locate('16t.jpg', filepath="Data/Raw/Test/")
+annotated, heatmap = locate('17t.jpg', filepath="Data/Raw/Test/")
 Image.fromarray(annotated).show()
-print(annotated.shape[:2])
-plt.title("Augmented")
-plt.imshow(annotated)
-plt.show()
+# print(annotated.shape[:2])
+# plt.title("Augmented")
+# plt.imshow(annotated)
+# plt.show()
