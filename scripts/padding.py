@@ -6,7 +6,6 @@ def custom_padding(img):
 
     # COLOURED
     # =============
-#     for i in img_array:
     if img.shape[-1] == 3:
         padded_img = np.zeros([256, 256, 3])
 
