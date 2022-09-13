@@ -4,9 +4,6 @@ import cv2
 from PIL import Image
 
 import numpy as np
-import random
-import os
-import time
 
 # Model
 from keras.models import Sequential
